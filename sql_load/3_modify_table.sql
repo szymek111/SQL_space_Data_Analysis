@@ -1,4 +1,9 @@
--- At this point .csv has been imported via MySQL Workbench Wizard due to problem with UTF-8 coding in file.
+LOAD DATA INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\space_missions_utf8.csv'
+INTO TABLE space_mission
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 ROWS;
 
 -- Checking if column 'Price' contains ","(comma) in any of record, later can be problematic in changing datatype.
 SELECT * from space_mission;

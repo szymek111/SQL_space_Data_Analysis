@@ -22,5 +22,5 @@ CREATE TABLE space_mission
     Mission VARCHAR(255),
     RocketStatus VARCHAR(255),
     Price VARCHAR(255),
-    MissionStatus VARCHAR(255),
+    MissionStatus VARCHAR(255)
 );
