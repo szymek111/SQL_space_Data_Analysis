@@ -1,0 +1,7 @@
+/*
+Number of missions conducted by each company from each location
+Displays the number of missions conducted by each company from different launch locations.
+
+Average cost of successful and unsuccessful missions
+Compares the average cost of missions that were successful with those that were unsuccessful.
+*/
