@@ -24,23 +24,44 @@ SELECT
 FROM space_mission
 ORDER BY cost DESC;
 
+--most expensive
 SELECT
     DISTINCT company,
     mission,
     cost,
     total_cost,
-    mission_count
+    launch_count
 FROM (
     SELECT
         company,
         mission,
         cost,
         ROUND(SUM(cost) OVER (PARTITION BY mission), 2) AS total_cost,
-        COUNT(*) OVER (PARTITION BY mission) AS mission_count
+        COUNT(*) OVER (PARTITION BY mission) AS launch_count
     FROM space_mission
-        WHERE mission NOT LIKE "%demo%"
-        AND mission NOT LIKE "%test%" 
-        AND cost IS NOT NULL
+        WHERE cost IS NOT NULL
 ) AS temp_table
-WHERE total_cost > 0 AND mission_count > 1
-ORDER BY total_cost DESC;
+WHERE total_cost > 0
+ORDER BY total_cost DESC
+LIMIT 1;
+
+--least expensive
+SELECT
+    DISTINCT company,
+    mission,
+    cost,
+    total_cost,
+    launch_count
+FROM (
+    SELECT
+        company,
+        mission,
+        cost,
+        ROUND(SUM(cost) OVER (PARTITION BY mission), 2) AS total_cost,
+        COUNT(*) OVER (PARTITION BY mission) AS launch_count
+    FROM space_mission
+        WHERE cost IS NOT NULL
+) AS temp_table
+WHERE total_cost > 0
+ORDER BY total_cost ASC
+LIMIT 1;

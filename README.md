@@ -12,9 +12,7 @@ This metric represents the total count of space missions attributed to each comp
 
 ***Most expensive and least expensive mission:*** This identifies the space mission with the highest cost and the one with the lowest cost, highlighting the extremes of mission expenditures.
 # 3. Mission Success Analysis
-***Percentage of successful missions for each company:*** This metric calculates the success rate of each company by determining the percentage of their missions that were successful.
-
-***Percentage of successful rocket launches:*** This analysis measures the overall success rate of rocket launches by comparing the number of successful launches to the total number of launches.
+***Percentage of successful rocket launches:*** This analysis measures the overall success rate of rocket launches for each company by comparing the number of successful launches to the total number of company's launches.
 # 4. Temporal Analysis
 ***Number of space missions in each month:*** This metric displays the count of space missions conducted during each month of the year, providing a monthly breakdown of mission activity.
 
