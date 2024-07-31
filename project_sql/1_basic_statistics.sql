@@ -10,9 +10,6 @@ Analyzes the count of missions conducted in different years.
 */
 
 
-SELECT * FROM space_mission
-ORDER BY Date DESC;
-
 SELECT
     company,
     COUNT(DISTINCT mission) AS count_of_mission
