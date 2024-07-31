@@ -5,18 +5,18 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 ROWS;
 
--- Checking if column 'Price' contains ","(comma) in any of record, later can be problematic in changing datatype.
+-- Checking if column 'Cost' contains ","(comma) in any of record, later can be problematic in changing datatype.
 SELECT * from space_mission;
-SELECT * FROM space_mission WHERE `Price` LIKE '%,%';
+SELECT * FROM space_mission WHERE `Cost` LIKE '%,%';
 
--- Deleting unnecesary commas from Price column
+-- Deleting unnecesary commas from Cost column
 UPDATE space_mission
-SET Price = REPLACE(Price, ',', '');
+SET Cost = REPLACE(Cost, ',', '');
 
--- Exchange empty cell for 'Price' column as a NULL value
+-- Exchange empty cell for 'Cost' column as a NULL value
 UPDATE space_mission
-SET Price = NULL WHERE Price = '';
+SET Cost = NULL WHERE Cost = '';
 
 -- Changing datatype from VARCHAR(255) to FLOAT
 ALTER TABLE space_mission
-MODIFY COLUMN Price FLOAT;
+MODIFY COLUMN Cost FLOAT;

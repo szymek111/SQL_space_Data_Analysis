@@ -9,7 +9,7 @@
     Rocket: Name of the rocket used for the mission
     Mission: Name of the space mission (or missions)
     Rocket Status: Status of the rocket as of August 2022 (Active or Inactive)
-    Price: Cost of the rocket in millions of US dollars
+    Cost: Cost of the rocket in millions of US dollars
     Mission Status: Status of the mission (Success, Failure, Partial Failure, Prelaunch Failure)
 */
 CREATE TABLE space_mission
@@ -21,6 +21,6 @@ CREATE TABLE space_mission
     Rocket VARCHAR(255),
     Mission VARCHAR(255),
     RocketStatus VARCHAR(255),
-    Price VARCHAR(255),
+    Cost VARCHAR(255),
     MissionStatus VARCHAR(255)
 );
