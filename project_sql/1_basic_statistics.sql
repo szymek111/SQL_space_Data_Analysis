@@ -13,12 +13,18 @@ Analyzes the count of missions conducted in different years.
 SELECT * FROM space_mission
 ORDER BY Date DESC;
 
-SELECT company, COUNT(DISTINCT mission) AS count_of_mission FROM space_mission
+SELECT
+    company,
+    COUNT(DISTINCT mission) AS count_of_mission
+FROM space_mission
 GROUP BY company
 ORDER BY count_of_mission DESC
 LIMIT 10;
 
-SELECT COUNT(location), location FROM space_mission
+SELECT 
+    COUNT(location),
+    location
+FROM space_mission
 GROUP BY location
 ORDER BY COUNT(location) DESC
 LIMIT 20;
