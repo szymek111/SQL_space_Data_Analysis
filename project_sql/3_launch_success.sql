@@ -1,5 +1,5 @@
 /*
-Percentage of successful rocket launches for each company
+Percentage of successful rocket launches for each company,
 Analyzes the percentage of successful rocket launches relative to all company's launches.
 */
 

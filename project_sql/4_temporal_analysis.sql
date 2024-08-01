@@ -1,7 +1,9 @@
 /*
-Number of space missions in each month Displays the number of missions conducted in each month of the year.
+Number of space launch in each month,
+Displays the number of missions conducted in each month of the year.
 
-Most active month in terms of number of missions Determines which month was the most active in terms of the number of space missions.
+Most active month in terms of number of launch,
+Determines which month was the most active in terms of the number of space launch.
 */
 
 

@@ -1,11 +1,11 @@
 /*
-Total cost of missions for each company
+Total cost of missions for each company,
 Sums the total cost of missions conducted by each company.
 
-Average cost of missions
+Average cost of missions,
 Calculates the average cost of a space mission.
 
-Most expensive and least expensive mission (where data available and misison is not test mission(Demo Flight, Test Flight e.g.))
+Most expensive and least expensive mission (where data available and misison is not test mission(Demo Flight, Test Flight e.g.)),
 Identifies the mission with the highest and lowest cost.
 */
 

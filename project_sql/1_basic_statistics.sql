@@ -1,11 +1,11 @@
 /*
-Number of space missions conducted by each company 
+Number of space missions conducted by each company,
 Displays the count of missions assigned to each company.
 
-Number of space missions conducted from each location 
+Number of space missions conducted from each location,
 Shows the number of missions launched from different locations.
 
-Number of space missions in each year 
+Number of space missions in each year,
 Analyzes the count of missions conducted in different years.
 */
 
