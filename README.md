@@ -1,3 +1,28 @@
+# Introduction
+TBD
+# Background
+This project was crafted to provide hands-on experience with SQL queries, data analysis techniques and gain practical skills in SQL while exploring various dimensions of space missions, including their frequency, costs, success rates, and temporal patterns, using real-world data related to space exploration. 🚀
+
+🔍 All used queries in: [project_sql folder](/project_sql/)
+
+### Areas for analysis I wanted to cover are:
+
+1. Basic statistics
+2. Financial
+3. Mission Successes
+4. Temporal
+5. Rockets
+6. Combined analysis
+
+# Tools I used
+
+- **SQL:** The basis of my analysis, allowing me to query the database.
+- **MySQL:** The chosen database management system.
+- **Visual Studio Code:** Chosen IDE for executing SQL queries and managing database.
+- **Git & GitHub:** For version control and sharing my SQL scripts and analysis.
+- **Python:** For converting .csv file for suitable encoding and plotting graphs based on received query.
+- **Power BI:** Used for creating understandable report.
+
 # 1. Basic Statistics
 ***Number of space missions conducted by each company:***
 This metric represents the total count of space missions attributed to each company, providing insight into the activity levels of various aerospace firms.
@@ -14,14 +39,20 @@ This metric represents the total count of space missions attributed to each comp
 # 3. Mission Success Analysis
 ***Percentage of successful rocket launches:*** This analysis measures the overall success rate of rocket launches for each company by comparing the number of successful launches to the total number of company's launches.
 # 4. Temporal Analysis
-***Number of space missions in each month:*** This metric displays the count of space missions conducted during each month of the year, providing a monthly breakdown of mission activity.
+***Number of space launch in each month:*** This metric displays the count of space launch conducted during each month of the year, providing a monthly breakdown of mission activity.
 
-***Most active month in terms of number of missions:*** This analysis identifies the month with the highest number of space missions, indicating the peak period of space mission activity.
+***Most active month in terms of number of launch:*** This analysis identifies the month with the highest number of space launch, indicating the peak period of space mission activity.
 # 5. Rocket Analysis
-***Number of missions for each rocket:*** This metric displays the count of missions conducted using each specific rocket, highlighting their utilization.
+***Number of launch for each rocket:*** This metric displays the count of launch conducted using each specific rocket, highlighting their utilization.
 
 ***Most frequently used rocket:*** This analysis identifies the rocket that has been used the most often, indicating its prominence and reliability in space missions.
 # 6. Combined Analyses
-***Number of missions conducted by each company from each location:*** This metric displays the count of missions conducted by each company from various launch locations, providing insight into the geographical distribution of their activities.
+***Number of launch conducted by each company from each location:*** This metric displays the count of launch conducted by each company from various launch locations, providing insight into the geographical distribution of their activities.
 
-***Average cost of successful and unsuccessful missions:*** This analysis compares the average cost of missions that were successful with those that were unsuccessful, highlighting cost differences based on mission outcomes.
+***Average cost of successful and unsuccessful launch:*** This analysis compares the average cost of launch that were successful with those that were unsuccessful, highlighting cost differences based on launch outcomes.
+
+***Oldest rocket which is still on duty:***
+This metric displays the oldest rocket that is still in service, showing its 'on duty time' and providing insight into its operational longevity.
+
+***Important dates of each retired rocket***
+This metric shows the first and last launch dates, as well as the duration and count of launch for which each rocket remained active, providing a comprehensive timeline of its operational history.
