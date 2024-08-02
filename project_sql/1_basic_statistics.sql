@@ -15,16 +15,15 @@ SELECT
     COUNT(DISTINCT mission) AS count_of_mission
 FROM space_mission
 GROUP BY company
-ORDER BY count_of_mission DESC
-LIMIT 10;
+ORDER BY count_of_mission DESC;
 
 SELECT 
-    COUNT(location),
+    COUNT(location) AS location_count,
     location
 FROM space_mission
 GROUP BY location
-ORDER BY COUNT(location) DESC
-LIMIT 20;
+ORDER BY COUNT(location) DESC;
+
 
 SELECT 
     EXTRACT(YEAR FROM date) AS years,
