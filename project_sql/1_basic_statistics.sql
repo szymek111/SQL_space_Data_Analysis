@@ -18,12 +18,13 @@ GROUP BY company
 ORDER BY count_of_mission DESC;
 
 SELECT 
-    COUNT(location) AS location_count,
-    location
-FROM space_mission
-GROUP BY location
-ORDER BY COUNT(location) DESC;
-
+    DISTINCT SUBSTRING_INDEX(SUBSTRING_INDEX(location, ',', 2), ',', -1) AS cosmodrome,
+    SUBSTRING_INDEX(location, ',', -1) AS cosmodrome_country,
+    COUNT(SUBSTRING_INDEX(SUBSTRING_INDEX(location, ',', 2), ',', -1)) AS cosmodrome_count
+FROM
+    space_mission
+GROUP BY cosmodrome, cosmodrome_country
+ORDER BY cosmodrome_count DESC;
 
 SELECT 
     EXTRACT(YEAR FROM date) AS years,

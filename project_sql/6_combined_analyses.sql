@@ -2,9 +2,6 @@
 Number of launch conducted by each company from each location,
 Displays the number of launch conducted by each company from different launch locations.
 
-Average cost of successful and unsuccessful launch,
-Compares the average cost of launch that were successful with those that were unsuccessful.
-
 Oldest rocket which is still on duty,
 shows the oldest rocket that is still in service displays its 'on duty time' while it remains active.
 
@@ -40,14 +37,6 @@ GROUP BY company, cosmodrome, region
 ORDER BY cosmodrome_count DESC;
 
 SELECT
-    rocket,
-    missionstatus,
-    cost,
-    ROUND(AVG(cost) OVER(PARTITION BY missionstatus), 2) AS avg_cost_per_status
-FROM space_mission
-WHERE cost IS NOT NULL;
-
-SELECT
     DISTINCT rocket,
     MIN(date) OVER (PARTITION BY rocket) AS first_launch,
     MAX(date) OVER (PARTITION BY rocket) AS last_launch,
@@ -55,7 +44,8 @@ SELECT
     COUNT(rocket) OVER (PARTITION BY rocket) AS number_of_starts,
     rocketstatus
 FROM space_mission
-WHERE rocketstatus = 'Retired';
+WHERE rocketstatus = 'Retired'
+ORDER BY duration DESC;
 
 SELECT
     rocket,

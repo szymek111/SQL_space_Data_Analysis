@@ -20,7 +20,8 @@ ORDER BY sum_of_mission_cost DESC;
 SELECT
     mission,
     cost,
-    AVG(cost) OVER (PARTITION BY mission) AS average_cost_of_mission
+    ROUND(AVG(cost) OVER (PARTITION BY mission), 2) AS average_cost_of_mission,
+    COUNT(*) OVER (PARTITION BY mission) AS launch_count
 FROM space_mission
 ORDER BY cost DESC;
 
