@@ -1,5 +1,5 @@
 # Introduction
-1957-10-04 - 2022-07-29
+Dataset which I worked on comes from kaggle.com and cover space missions from October 1957 to August 2022, including details on the location, date, and result of the launch, the company responsible, and the name, price, and status of the rocket used for the mission.
 # Background
 This project was crafted to provide hands-on experience with SQL queries, data analysis techniques and gain practical skills in SQL while exploring various dimensions of space missions, including their frequency, costs, success rates, and temporal patterns, using real-world data related to space exploration. 🚀
 
@@ -51,10 +51,6 @@ FROM space_mission
 GROUP BY years
 ORDER BY years DESC;
 ```
-
----
----
-
 
 ## <ins>Number of space missions conducted by each company:</ins>
 # GRAPH!!!!!!! 
