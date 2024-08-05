@@ -20,7 +20,7 @@ This project was crafted to provide hands-on experience with SQL queries, data a
 - **MySQL:** The chosen database management system.
 - **Visual Studio Code:** Chosen IDE for executing SQL queries and managing database.
 - **Git & GitHub:** For version control and sharing my SQL scripts and analysis.
-- **Python:** For converting .csv file for suitable encoding and plotting graphs based on received query.
+- **Python:** (pandas, matplotlib)For converting .csv file for suitable encoding, cleaning and handing data, plotting graphs based on received query.
 - **Power BI:** Used for creating understandable report.
 
 # 1. Basic Statistics
