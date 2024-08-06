@@ -53,8 +53,11 @@ ORDER BY years DESC;
 ```
 
 ## <ins>Number of space missions conducted by each company:</ins>
-# GRAPH!!!!!!! 
+
 Analyzing the data on the count of missions for each company reveals several important insights into the landscape of space exploration and rocket launches:
+
+
+![Top 10 Companies](py_files/graphs/top_10_companies.png)
 
 **1. Dominance of RVSN USSR**
 
@@ -106,8 +109,10 @@ The data showcases a diverse and competitive field of space exploration, with si
 This competitive landscape is poised to drive further advancements and achievements in space exploration in the coming years.
 
 ## <ins>Number of space missions conducted from each location:</ins>
-# GRAPH!!!!!!! 
+
 Analyzing the dataset on the number of launches from various cosmodromes provides valuable insights into the global distribution and activity levels of spaceports:
+
+![Top 10 Cosmodromes](py_files/graphs/top_10_cosmodromes.png)
 
 **1. Plesetsk Cosmodrome, Russia:**
 
@@ -166,8 +171,10 @@ This dataset highlights the strategic importance of various cosmodromes around t
 Overall, the distribution of launches underscores the collaborative and competitive nature of global space exploration, with each region leveraging its strategic advantages to advance its space ambitions.
 
 ## <ins>Number of space missions in each year:</ins>
-# GRAPH!!!!!!! 
+
 Analyzing the data on the number of rocket launches over the years reveals several key trends and conclusions:
+
+![Yearly Frequency](py_files/graphs/years_freq.png)
 
 **Early Development and Low Activity (1957-1969):**
 
@@ -197,7 +204,7 @@ A significant increase occurs from 2010 onwards, with a noticeable surge from 20
 In summary, this data shows the dynamic development of rocket technology and space exploration, with clear phases of growth, stabilization, and renewed increase in recent years. The current upward trend suggests continued development and intensification of space activities in the coming years.
 
 # 2. Financial Analysis
-# GRAPH!!!!!!! 
+
 To get insight, I wanted to analyze financial aspects of space missions (There were taken only missions where data available and misison is not test mission(Demo Flight, Test Flight e.g.))
 
 ```sql
@@ -239,7 +246,10 @@ LIMIT 1;
 ```
 
 ## <ins>Total cost of missions for each company:</ins>
+
 The dataset on the summary cost of missions for each company reveals important financial trends and investment priorities in the space industry:
+
+![Top Paying Skills](py_files/graphs/cost_of_mission_per_company.png)
 
 - **High Investment by NASA (<ins>$76.280 bilion</ins>) :** NASA's substantial expenditure reflects its comprehensive and ambitious space program, covering a wide range of scientific and exploratory missions.
 - **Significant Commercial Expenditures (<ins>$45.906 bilion</ins>) :**  Arianespace, ULA, and SpaceX represent major commercial entities with significant investments in space launch services, catering to diverse clients worldwide.
