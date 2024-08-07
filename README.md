@@ -62,7 +62,7 @@ Analyzing the data on the count of missions for each company reveals several imp
 ![Top 10 Companies](py_files/graphs/top_10_companies.png)
 
 <details>
-  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  <summary>(Python code for graph generation)</summary>
   
 ```python
 # Count occurences of each comapny 
@@ -147,7 +147,7 @@ Analyzing the dataset on the number of launches from various cosmodromes provide
 ![Top 10 Cosmodromes](py_files/graphs/top_10_cosmodromes.png)
 
 <details>
-  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  <summary>(Python code for graph generation)</summary>
   
 ```python
 def split_location(location):
@@ -280,7 +280,7 @@ Analyzing the data on the number of rocket launches over the years reveals sever
 ![Yearly Frequency](py_files/graphs/years_freq.png)
 
 <details>
-  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  <summary>(Python code for graph generation)</summary>
   
 ```python
 #Create new dataframe for 'Date' column
@@ -403,10 +403,10 @@ LIMIT 1;
 The dataset on the summary cost of missions for each company reveals important financial trends and investment priorities in the space industry:
 
 
-![Top Paying Skills](py_files/graphs/cost_of_mission_per_company.png)
+![Cost of missions](py_files/graphs/cost_of_mission_per_company.png)
 
 <details>
-  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  <summary>(Python code for graph generation)</summary>
   
 ```python
 # Count occurences of each comapny 
@@ -526,8 +526,53 @@ ORDER BY success_rate DESC;
 - **Historical Performance:** Companies like Blue Origin and Rocket Lab, despite having fewer launches, demonstrate strong reliability, indicating their potential for growth in the market.
 
 # 4. Temporal Analysis
-# GRAPH!!!!!!! 
+
 This metric displays the count of space launch conducted during each month of the year, providing a monthly breakdown of mission activity
+
+![Months frequency](py_files/graphs/months_freq.png)
+
+<details>
+  <summary>(Python code for graph generation)</summary>
+  
+```python
+#Create new dataframe for 'Date' column
+df_date = df[['Date']]
+
+#Change datatype for datetime format
+df_date['Date'] = pd.to_datetime(df_date['Date'])
+
+#Adding column to df_date 
+df_date['Month'] = df_date['Date'].dt.month
+
+#check occurrences 'Month'
+month_counts = df_date['Month'].value_counts().reset_index()
+
+#Change column name
+month_counts.columns = ['Month', 'Frequency']
+
+#Sort by 'Month'
+month_counts = month_counts.sort_values(by='Month')
+
+print(month_counts)
+print("---------------------")
+
+# Plot the graph
+plt.figure(figsize=(13, 6))
+bars = plt.bar(year_counts['Month'], year_counts['Frequency'])
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom')
+plt.xlabel('Month')
+plt.ylabel('Frequency')
+plt.title('Frequency of Launches by Month')
+plt.xticks(year_counts['Month'])
+plt.savefig('graphs/months_freq.png') #save in 
+plt.show()
+```
+</details>
+
+<br />
+
 ```sql
 SELECT 
     month_value,
@@ -544,7 +589,6 @@ ORDER BY month_occurence DESC;
 - **Spring and Early Months** (March, April, May) show moderate activity, with March at **378**, April at **409**, and May at **350**. This consistency indicates stable launch operations but without the peaks observed in summer or December.
 
 # 5. Rocket Analysis
-# GRAPH!!!!!!! 
 
 ```sql
 SELECT 
@@ -557,6 +601,22 @@ ORDER BY rocket_used DESC;
 ## <ins>Number of launch for each rocket:</ins>
  This metric displays the count of launch conducted using each specific rocket, highlighting their utilization.
 
+| Rocket                | Count of use |
+|-----------------------|--------------|
+| Cosmos-3M (11K65M)    | 446          |
+| Voskhod               | 299          |
+| Molniya-M /Block ML   | 128          |
+| Cosmos-2I (63SM)      | 126          |
+| Soyuz U               | 125          |
+| Tsyklon-3             | 122          |
+| Falcon 9 Block 5      | 111          |
+| Tsyklon-2             | 106          |
+| Vostok-2M             | 93           |
+| Molniya-M /Block 2BL  | 87           |
+| ...                   | ...          |
+
+
+
 ### Observation
 
 - It indicates that a few rocket models, such as **Cosmos-3M** and **Voskhod**, are extensively used in space missions, reflecting their proven reliability and versatility. 
@@ -564,7 +624,7 @@ ORDER BY rocket_used DESC;
 - The variation in usage frequencies underscores the diverse roles and preferences in rocket selection for different mission requirements.
 
 # 6. Combined Analyses
-# GRAPH!!!!!!! 
+
 This section contains various analysis.
 
 ```sql
