@@ -5,6 +5,8 @@ This project was crafted to provide hands-on experience with SQL queries, data a
 
 🔍 All used queries in: [project_sql folder](/project_sql/)
 
+🔍 jupyter wrokbook in: [space_jupyter_notebook.ipynb](/py_files/)
+
 ### Areas for analysis I wanted to cover are:
 
 1. Basic statistics
@@ -58,6 +60,36 @@ Analyzing the data on the count of missions for each company reveals several imp
 
 
 ![Top 10 Companies](py_files/graphs/top_10_companies.png)
+
+<details>
+  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  
+```python
+# Count occurences of each comapny 
+company_counts = df['Company'].value_counts().head(10)
+print(company_counts)
+
+#Sort
+company_counts = company_counts.sort_values(ascending=True)
+    
+# Plot the graph
+plt.figure(figsize=(10, 5))
+ax = company_counts.plot(kind='barh')
+
+# Adding labels on bars
+for index, value in enumerate(company_counts):
+    ax.text(value, index, str(value), va='center')
+
+plt.xlabel('Number of launches')
+plt.ylabel('Company')
+plt.title('Number of launch per company')
+plt.tight_layout()
+plt.savefig('graphs/top_10_companies.png') #save in 
+plt.show()
+```
+</details>
+
+<br />
 
 **1. Dominance of RVSN USSR**
 
@@ -113,6 +145,77 @@ This competitive landscape is poised to drive further advancements and achieveme
 Analyzing the dataset on the number of launches from various cosmodromes provides valuable insights into the global distribution and activity levels of spaceports:
 
 ![Top 10 Cosmodromes](py_files/graphs/top_10_cosmodromes.png)
+
+<details>
+  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  
+```python
+def split_location(location):
+
+#split 'location' on parts containing datas:
+    
+    parts = location.split(', ')
+    
+    site = None
+    cosmodrome = None
+    state = None
+    country = None
+    
+    if len(parts) == 4:
+        # Format: site, cosmodrome, state, country
+        site = parts[0]
+        cosmodrome = parts[1]
+        state = parts[2]
+        country = parts[3]
+    elif len(parts) == 3:
+        # Format: site, cosmodrome, country
+        site = parts[0]
+        cosmodrome = parts[1]
+        state = None
+        country = parts[2]
+    elif len(parts) == 2:
+        # Format: cosmodrome, country
+        site = None
+        cosmodrome = parts[0]
+        state = None
+        country = parts[1]
+    elif len(parts) == 1:
+        # Format: country
+        site = None
+        cosmodrome = None
+        state = None
+        country = parts[0]
+    
+    return site, cosmodrome, state, country
+
+df_for_cosmodromes = df.copy()
+df_for_cosmodromes[['Site', 'Cosmodrome', 'State', 'Country']] = df['Location'].apply(split_location).apply(pd.Series)
+
+# Count occurences of each cosmodrome 
+cosmodrome_counts = df_for_cosmodromes['Cosmodrome'].value_counts().head(10)
+print(cosmodrome_counts)
+
+#Sort
+cosmodrome_counts = cosmodrome_counts.sort_values(ascending=True)
+    
+# Plot the graph
+plt.figure(figsize=(10, 6))
+ax = cosmodrome_counts.plot(kind='barh')
+
+# Adding labels on bars
+for index, value in enumerate(cosmodrome_counts):
+    ax.text(value, index, str(value), va='center')
+
+plt.xlabel('Cosmodrome')
+plt.ylabel('Number of use')
+plt.title('Number of use per cosmodrome')
+plt.tight_layout()
+plt.savefig('graphs/top_10_cosmodromes.png') #save in 
+plt.show()
+```
+</details>
+
+<br />
 
 **1. Plesetsk Cosmodrome, Russia:**
 
@@ -175,6 +278,56 @@ Overall, the distribution of launches underscores the collaborative and competit
 Analyzing the data on the number of rocket launches over the years reveals several key trends and conclusions:
 
 ![Yearly Frequency](py_files/graphs/years_freq.png)
+
+<details>
+  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  
+```python
+#Create new dataframe for 'Date' column
+df_date = df[['Date']]
+
+#Change datatype for datetime format
+df_date['Date'] = pd.to_datetime(df_date['Date'])
+
+#Adding column to df_date 
+df_date['Year'] = df_date['Date'].dt.year
+
+#check occurrences 'Year'
+year_counts = df_date['Year'].value_counts().reset_index()
+
+#Change column name
+year_counts.columns = ['Year', 'Frequency']
+
+#Sort by 'Year'
+year_counts = year_counts.sort_values(by='Year')
+
+
+# Plot the graph
+plt.figure(figsize=(13, 6))
+plt.plot(year_counts['Year'], year_counts['Frequency'], marker='o', linestyle='-')
+plt.xlabel('Year')
+plt.ylabel('Frequency')
+plt.title('Frequency of Launches by Year')
+plt.xticks(year_counts['Year'], rotation=90)
+plt.show()
+
+#two types of graph
+
+plt.figure(figsize=(13, 6))
+bars = plt.bar(year_counts['Year'], year_counts['Frequency'])
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom', rotation = 90)
+plt.xlabel('Year')
+plt.ylabel('Frequency')
+plt.title('Frequency of Launches by Year')
+plt.xticks(year_counts['Year'], rotation = 90)
+plt.savefig('graphs/years_freq.png') #save in 
+plt.show()
+```
+</details>
+
+<br />
 
 **Early Development and Low Activity (1957-1969):**
 
@@ -249,7 +402,38 @@ LIMIT 1;
 
 The dataset on the summary cost of missions for each company reveals important financial trends and investment priorities in the space industry:
 
+
 ![Top Paying Skills](py_files/graphs/cost_of_mission_per_company.png)
+
+<details>
+  <summary><span style="color:#FFD241">(Python code for graph generation)</span></summary>
+  
+```python
+# Count occurences of each comapny 
+company_counts = df['Company'].value_counts().head(10)
+print(company_counts)
+
+#Sort
+company_counts = company_counts.sort_values(ascending=True)
+    
+# Plot the graph
+plt.figure(figsize=(10, 5))
+ax = company_counts.plot(kind='barh')
+
+# Adding labels on bars
+for index, value in enumerate(company_counts):
+    ax.text(value, index, str(value), va='center')
+
+plt.xlabel('Number of launches')
+plt.ylabel('Company')
+plt.title('Number of launch per company')
+plt.tight_layout()
+plt.savefig('graphs/top_10_companies.png') #save in 
+plt.show()
+```
+</details>
+
+<br />
 
 - **High Investment by NASA (<ins>$76.280 bilion</ins>) :** NASA's substantial expenditure reflects its comprehensive and ambitious space program, covering a wide range of scientific and exploratory missions.
 - **Significant Commercial Expenditures (<ins>$45.906 bilion</ins>) :**  Arianespace, ULA, and SpaceX represent major commercial entities with significant investments in space launch services, catering to diverse clients worldwide.
@@ -266,8 +450,10 @@ The dataset on the summary cost of missions for each company reveals important f
 The stark contrast in costs between the Buran mission and Astra's Rocket 3.1 mission comes from the historical vs. modern context. The Buran mission was a Cold War-era project with considerable government funding and a focus on large-scale, complex missions. In contrast, Astra's mission reflects a modern trend towards privatization and cost-efficiency in the space industry, driven by commercial demand and advancements in technology.
 
 # 3. Mission Success Analysis
-# GRAPH!!!!!!! 
+
 This analysis measures the overall success rate of rocket launches for each company by comparing the number of successful launches to the total number of company's launches (For companies which have at least 10 launch).
+
+
 
 ```sql
 SELECT
