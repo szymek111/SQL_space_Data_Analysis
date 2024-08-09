@@ -680,6 +680,106 @@ LIMIT 1;
 ## <ins>Number of launch conducted by each company from each location:</ins> 
 This metric displays the count of launch conducted by each company from various launch locations, providing insight into the geographical distribution of their activities.
 
+![Companies and Cosmodromes](py_files/graphs/companies_cosmodromes.png)
+
+<details>
+  <summary>(Python code for graph generation)</summary>
+  
+```python
+import numpy as np
+
+def split_location(location):
+
+#split 'location' on parts containing datas:
+    
+    parts = location.split(', ')
+    
+    site = None
+    cosmodrome = None
+    state = None
+    country = None
+    
+    if len(parts) == 4:
+        # Format: site, cosmodrome, state, country
+        site = parts[0]
+        cosmodrome = parts[1]
+        state = parts[2]
+        country = parts[3]
+    elif len(parts) == 3:
+        # Format: site, cosmodrome, country
+        site = parts[0]
+        cosmodrome = parts[1]
+        state = None
+        country = parts[2]
+    elif len(parts) == 2:
+        # Format: cosmodrome, country
+        site = None
+        cosmodrome = parts[0]
+        state = None
+        country = parts[1]
+    elif len(parts) == 1:
+        # Format: country
+        site = None
+        cosmodrome = None
+        state = None
+        country = parts[0]
+    
+    return site, cosmodrome, state, country
+
+df_for_cosmodromes = df.copy()
+df_for_cosmodromes[['Site', 'Cosmodrome', 'State', 'Country']] = df['Location'].apply(split_location).apply(pd.Series)
+
+#Create dataframe: group by 'Company' and 'Cosmodrome', count ocurrences in each group, 
+grouped_cosmodrome = df_for_cosmodromes.groupby(['Company', 'Cosmodrome']).size().reset_index(name='Count of use')
+
+#Sort by 'Count of use' column
+grouped_cosmodrome = grouped_cosmodrome.sort_values(by='Count of use', ascending = False)
+grouped_cosmodrome = grouped_cosmodrome.head(20)
+#grouped_cosmodrome.columns
+
+print(grouped_cosmodrome)
+print("------------------------")
+
+# Group data
+pivot_df = grouped_cosmodrome.pivot(index='Cosmodrome', columns='Company', values='Count of use')
+
+# Generate random colors for each company
+np.random.seed(1011)  # Seed for reproducibility
+num_companies = pivot_df.shape[1]
+colors = np.random.rand(num_companies, 3)  # Generate an array of random colors
+
+# Plot the graph
+ax = pivot_df.plot(kind='barh', stacked=True, figsize=(14, 8), width=0.8, color=colors)
+
+# Add title and labels
+plt.ylabel('Cosmodrome')
+plt.xlabel('Count of use')
+plt.title('Count of Rocket Launches by Cosmodrome and Company')
+plt.yticks(rotation=45, ha='right')
+ax.legend(loc='best')
+
+# Add labels on bars
+for bar in ax.patches:
+    width = bar.get_width()
+    if width > 0:  # Only if value is not '0'
+        ax.text(
+            bar.get_x() + width / 2,
+            bar.get_y() + bar.get_height() / 2,
+            f'{int(width)}',
+            ha='center', va='center',
+            fontsize=8, color='white'
+        )
+
+# Save plot
+plt.savefig('graphs/companies_cosmodromes.png')
+
+# Show plot
+plt.show()
+```
+</details>
+
+<br />
+
 - **USA** hosts several major cosmodromes including **Cape Canaveral AFS** and **Kennedy Space Center**, which are heavily utilized by companies such as **NASA, General Dynamics, SpaceX**, and **Lockheed**. This reflects the strategic importance of these sites for American space operations.
 - **Russia's Plesetsk Cosmodrome** and **Baikonur Cosmodrome** are central to **RVSN USSR** and **VKS RF** operations, indicating their dominance in Russian space missions.
 - **China's Xichang Satellite Launch Center**, **Jiuquan Satellite Launch Center**, and **Taiyuan Satellite Launch Center** are key sites for **CASC**, showcasing China's growing space launch capabilities.
@@ -687,6 +787,29 @@ This metric displays the count of launch conducted by each company from various 
 
 ## <ins> Important dates of each retired rocket</ins> 
 This metric shows the first and last launch dates, as well as the duration and count of launch for which each rocket remained active, providing a comprehensive timeline of its operational history.
+
+| Rocket                    | Launches | Flights |
+|---------------------------|----------|---------|
+| Soyuz U                   | 43       | 125     |
+| Cosmos-3M (11K65M)        | 42       | 446     |
+| Molniya-M /Block 2BL       | 38       | 87      |
+| Tsyklon-2                 | 36       | 106     |
+| Molniya-M /Block ML        | 31       | 128     |
+| Tsyklon-3                 | 31       | 122     |
+| Vostok-2M                 | 27       | 93      |
+| Space Shuttle Discovery   | 26       | 39      |
+| Space Shuttle Atlantis    | 25       | 33      |
+| Molniya-M /Block SO-L      | 24       | 12      |
+| PSLV-G                    | 23       | 12      |
+| Zenit-2                   | 22       | 37      |
+| Molniya-M /Block NVL       | 21       | 5       |
+| Space Shuttle Columbia    | 21       | 28      |
+| Delta II 7420-10C         | 20       | 12      |
+| Delta II 7920-10C         | 20       | 25      |
+| Cosmos-3MRB (65MRB)       | 19       | 19      |
+| Rokot/Briz KM             | 19       | 31      |
+| Space Shuttle Endeavour   | 19       | 25      |
+| Delta II 7925             | 18       | 62      |
 
 - **Soyuz U** and **Cosmos-3M (11K65M)** are the longest-running rockets, with operational durations of **43** and **42** years, respectively. This longevity reflects their significant roles in space missions over several decades.
 - **Molniya-M /Block 2BL** and **Tsyklon-2** have durations of **38** and **36** years, respectively, indicating their extended use in space programs.
